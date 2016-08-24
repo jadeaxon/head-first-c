@@ -9,21 +9,22 @@ int main() {
 	puts("Enter the card name: ");
 	scanf("%2s", card_name);
 	int val = 0;
-	if (card_name[0] == 'A') {
-		val = 11;
-	}
-	else if (card_name[0] == 'K') {
-		val = 10;
-	}
-	else if (card_name[0] == 'Q') {
-		val = 10;
-	}
-	else if (card_name[0] == 'J') {
-		val = 10;
-	}
-	else {
-		val = atoi(card_name);
-	}
+	
+	char rank = card_name[0];
+	switch (rank) {
+		case 'A':
+			val = 11; break;
+		case 'K':
+			val = 10; break;
+		case 'Q':
+			val = 10; break;
+		case 'J':
+			val = 10; break;
+		default:
+			// val = atoi(rank); // FAIL: atoi() takes a C string.
+			// PRE: char is ASCII or 0-9 are sequential.
+			val = rank - '0';
+		} // switch
 
 	printf("The card value is %i\n", val);
 	return 0;
